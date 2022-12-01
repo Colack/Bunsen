@@ -153,7 +153,7 @@ void api_getElementName(char element[MAX_STRING]) {
 
     int elementOrder = (find - _symbols) / _symbolMax;
 
-    printf("%s", elements[elementOrder]._name);
+    printf("%s\n", elements[elementOrder]._name);
 }
 
 // @Usage : api_getElementSymbol("Hydrogen");
@@ -176,7 +176,7 @@ void api_getElementSymbol(char element[MAX_STRING]) {
 
     int elementOrder = (find - _names) / _nameMax;
 
-    printf("%s", elements[elementOrder]._symbol);
+    printf("%s\n", elements[elementOrder]._symbol);
 }
 
 // @Usage : api_listAllElements();
@@ -200,7 +200,7 @@ void api_listAllElements() {
 */
 void api_getElement(int number) {
     if (number > 0 && number < 119) {
-        printf("%s",elements[number-1]._name);
+        printf("%s\n",elements[number-1]._name);
     }
     else {
         printf("Invalid number.\nType a number between 1 and 118.\n");
@@ -275,6 +275,7 @@ void api_getElementGroup(char element[MAX_STRING]) {
                     printf("Element not found.\nName are case sensitive.\n");
                     break;
             }
+            printf("\n");
             found = true;
             break;
         }
@@ -357,7 +358,7 @@ void api_listAllElementsInGroup(char group[MAX_STRING]){
 void api_getNGConfig(int elementLine) {
     for (int i = 0; i < 117; i++) {
         if (i == elementLine) {
-            printf("%s",_nobleGasConfig[i]);
+            printf("%s\n",_nobleGasConfig[i]);
         }
     }
 }
@@ -394,7 +395,7 @@ void api_getAtomicNumber(char element[MAX_STRING]) {
         elementOrder = (find - _symbols) / _symbolMax;
     }
 
-    printf("%s - %d", elements[elementOrder]._name, elements[elementOrder]._atomicNumber);
+    printf("%s - %d\n", elements[elementOrder]._name, elements[elementOrder]._atomicNumber);
 
 }
 
@@ -413,9 +414,9 @@ void api_getMolarMass(int element, int atoms) {
     The electron configuration is returned as a string.
 */
 void api_getElectronConfig(int elementLine) {
-    for (int i = 0; i < 118; i++) {
+    for (int i = 0; i < 117; i++) {
         if (i == elementLine) {
-            printf("%s", _electronConfig[i]);
+            printf("%s\n", _electronConfig[i]);
             break;
         }
     }

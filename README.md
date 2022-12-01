@@ -33,7 +33,7 @@ Periodic Bunsen is written in C, and is compiled using GCC. If you want to test 
 
 ## Screenshots
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Colack/Bunsen/main/assets/screen1.png" alt="Screenshot 1"/>
+    <img src="https://raw.githubusercontent.com/Colack/Bunsen/main/assets/screen.png" alt="Screenshot 1"/>
 </p>
   
 ## Contributing
