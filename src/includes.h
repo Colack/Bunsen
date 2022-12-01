@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <sys/types.h>
+#include <dirent.h>
+#include <errno.h>
 
 // @Path src\includes.h
 // Contains all the includes and defines for the project.
@@ -15,7 +17,7 @@
 #define MAX_ARRAY 1000
 
 #define VERSION_MAJOR 0
-#define VERSION_MINOR 1
+#define VERSION_MINOR 2
 #define VERSION_YEAR 2022
 
 #define LICENSE "GNU GPL v3.0"

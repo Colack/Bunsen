@@ -48,6 +48,9 @@ tasks.json
 *.idb
 *.pdb
 
+# Build Directory
+bin/
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd

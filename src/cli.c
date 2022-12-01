@@ -5,7 +5,7 @@
 // Contains the CLI function(s)
 
 // Contains the commands
-char commands[][MAX_STRING] = {
+static const char commands[][MAX_STRING] = {
     "getName",
     "getSymbol",
     "getElement",
@@ -25,24 +25,27 @@ char commands[][MAX_STRING] = {
     "repo",
     "exit"};
 
-
 // @Usage : credits();
 // @Brief : Prints the credits.
-void credits()
+static void credits()
 {
-    printf("Periodic Bunsen CLI V%d.%d. (c) Jack Spencer %d.\nRepository : %s\nLicense : %s\n", VERSION_MAJOR, VERSION_MINOR, VERSION_YEAR, REPOSITORY, LICENSE);
+    printf("Periodic Bunsen CLI V%d.%d. (c) Jack Spencer %d.\nRepository : %s\nLicense : %s\nContributors : \n\n", VERSION_MAJOR, VERSION_MINOR, VERSION_YEAR, REPOSITORY, LICENSE);
+    for (int i = 0; i < sizeof(contributors) / sizeof(contributors[0]); i++)
+    {
+        printf("%s\n", contributors[i]);
+    }
 }
 
 // @Usage : repo();
 // @Brief : Prints the repository link.
-void repo()
+static void repo()
 {
     printf("Repository : %s\n", REPOSITORY);
 }
 
 // @Usage : help();
 // @Brief : Prints the help message.
-void help()
+static void help()
 {
     printf(
         " -- GET Commands --\n"
@@ -70,7 +73,7 @@ void help()
 
 // @Usage : version();
 // @Brief : Show version of program
-void version()
+static void version()
 {
     printf("Periodic Bunsen CLI v%d.%d (c) Jack Spencer %d\n", VERSION_MAJOR, VERSION_MINOR, VERSION_YEAR);
 }
@@ -82,7 +85,7 @@ void version()
     Takes a command as an input, and executes a function based off of the command name.
     The list of commands is in the commands array.
 */
-void command(unsigned char command[MAX_STRING])
+static void command(unsigned char command[MAX_STRING])
 {
     printf("\n");
 
@@ -138,12 +141,11 @@ void command(unsigned char command[MAX_STRING])
 
     case CMD_GET_NG_CFG_HASH:
     {
-        char _element[MAX_STRING];
-        printf("Enter the name or symbol of the element: ");
-        scanf("%s", _element);
+        int _element;
+        printf("Enter atomic number: ");
+        scanf("%d", &_element);
 
-        //  api_getNGConfig(_element);
-        //  Can't compile
+        api_getNGConfig(_element);
 
         break;
     }
@@ -162,11 +164,12 @@ void command(unsigned char command[MAX_STRING])
 
     case CMD_GET_ELECTRON_CFG_HASH:
     {
-        char _element[MAX_STRING];
-        printf("Enter the name or symbol of the element: ");
-        scanf("%s", _element);
-        //  api_getElectronConfig(_element);
-        //  printf("Work in progress.\n");
+        int _element;
+        printf("Enter the atomic number of the element: ");
+        scanf("%d", &_element);
+
+        api_getElectronConfig(_element);
+        
         break;
     }
 
@@ -238,7 +241,6 @@ void cli(int argc, char* argv[])
         command(argv[i]);
     }
     printf("\n");
-
 
     unsigned char input[MAX_STRING];
 

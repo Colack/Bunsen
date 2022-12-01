@@ -11,9 +11,9 @@
 // {atomic number, atomic symbol, name, relative atomic mass, group}
 //
 // The group is of type element_group
-Element elements[118] = {
+static Element elements[118] = {
     {1, "H", "Hydrogen", 1.007, REACTIVE_NONMETALS},
-    {2, "He", "Helium", 4.002602, NOBLE_GASES},
+    {2, "He", "Helium", 4.002602,  NOBLE_GASES},
     {3, "Li", "Lithium", 6.941, ALKALI_METALS},
     {4, "Be", "Beryllium", 9.0121831, ALKALINE_EARTH_METALS},
     {5, "B", "Boron", 10.811, METALLOIDS},
@@ -132,19 +132,6 @@ Element elements[118] = {
     {118, "Og", "Oganesson", 294, NOBLE_GASES},
 
 };
-
-
-// Contains each elements group, from 1-10.
-//
-//  Commented out groups are not used in this program ATM.
-//
-// const int elementsSpecificGroup[118] = {
-//     5, 9, 1, 2, 3, 4, 5, 6, 7, 9, 1, 2, 3, 4, 5, 6, 7, 9, 1, 2, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3, 4, 5, 6, 7, 9, 1, 2, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3, 4, 5, 6, 7, 9, 1, 2, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3, 4, 5, 6, 7, 9, 1, 2, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3, 4, 5, 6, 7, 9, 1, 2, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3, 4, 5, 6, 7, 9, 1, 2, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3, 4, 5, 6, 7, 9
-// };
-
-// const int nobleGases[8] = {
-//     2, 10, 18, 36, 54, 86, 118, 118
-// };
 
 // @Usage : api_getElementName("H");
 // @Param : element - The elements symbol.
@@ -360,36 +347,19 @@ void api_listAllElementsInGroup(char group[MAX_STRING]){
 
 }
 
-// @Usage : api_getNGConfig("H");
-// @Param : element - The element to get the configuration of.
+// @Usage : api_getNGConfig(1);
+// @Param : elementLine - The element to get the configuration of. (int)
 // @Brief : Prints the noble gas configuration of the element.
 /*
     Prints the noble gas configuration of the element provided.
-    The element can be provided as the name or symbol.
+    The parameter must be a integer.
 */
-void api_getNGConfig(char element[MAX_STRING]) {
-    //   printf("Command Currently Broken\n");
-
-    // Go into the assets folder and open the file "electron.txt"
-    // FILE *electronConfig = fopen("assets/electron.txt", "r");
-    // // If the file is not found, print an error message.
-    // if (electronConfig == NULL) {
-    //     printf("Error: File not found.\n");
-    // }
-    // // If the file is found, read the file and print the electron configuration.
-    // else {
-    //     char line[MAX_STRING];
-    //     int i = 0;
-    //     while (fgets(line, sizeof(line), electronConfig)) {
-    //         if (i == elementLine) {
-    //             printf("%s", line);
-    //             break;
-    //         }
-    //         i++;
-    //     }
-    // }
-
-
+void api_getNGConfig(int elementLine) {
+    for (int i = 0; i < 117; i++) {
+        if (i == elementLine) {
+            printf("%s",_nobleGasConfig[i]);
+        }
+    }
 }
 
 // @Usage : api_getAtomicNumber("Hydrogen");
@@ -428,37 +398,25 @@ void api_getAtomicNumber(char element[MAX_STRING]) {
 
 }
 
-// @Usage : api_getMolarMass("1");
+// @Usage : api_getMolarMass(1, 1);
 // @Param : element - The element to get the molar mass of. (int) atoms - The number of atoms. (int)
 // @Brief : Returns the molar mass of the element.
 void api_getMolarMass(int element, int atoms) {
     printf("%.3f", elements[element-1]._relativeAtomic * atoms);
 }
 
-// @Usage : api_getElectronConfig("Hydrogen");
-// @Param : element - The element to get the electron configuration of.
+// @Usage : api_getElectronConfig(1);
+// @Param : elementLine - The element to get the electron configuration of. (int)
 // @Brief : Returns the electron configuration of the element.
 /*
     Returns the electrons configuration of the element.
     The electron configuration is returned as a string.
 */
 void api_getElectronConfig(int elementLine) {
-    // Go into the assets folder and open the file "electron.txt"
-    FILE *electronConfig = fopen("assets/electron.txt", "r");
-    // If the file is not found, print an error message.
-    if (electronConfig == NULL) {
-        printf("Error: File not found.\n");
-    }
-    // If the file is found, read the file and print the electron configuration.
-    else {
-        char line[MAX_STRING];
-        int i = 0;
-        while (fgets(line, sizeof(line), electronConfig)) {
-            if (i == elementLine) {
-                printf("%s", line);
-                break;
-            }
-            i++;
+    for (int i = 0; i < 118; i++) {
+        if (i == elementLine) {
+            printf("%s", _electronConfig[i]);
+            break;
         }
     }
 }
