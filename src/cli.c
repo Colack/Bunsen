@@ -5,7 +5,7 @@
 // Contains the CLI function(s)
 
 // Contains the commands
-char commands[15][MAX_STRING] = {
+char commands[][MAX_STRING] = {
     "getName",
     "getSymbol",
     "getElement",
@@ -17,6 +17,7 @@ char commands[15][MAX_STRING] = {
 
     "listAllElements",
     "listAllElementGroups",
+    "listAllElementsInGroup",
 
     "help",
     "version",
@@ -56,7 +57,8 @@ void help()
 
         " -- LIST Commands --\n"
         "listAllElements : List all elements.\n"
-        "listAllElementGroups : List all element groups.\n\n\n"
+        "listAllElementGroups : List all element groups.\n"
+        "listAllElementsInGroup : List all elements in a given group.\n\n\n"
 
         " -- CLI Commands --\n"
         "help : Prints the help message.\n"
@@ -164,7 +166,7 @@ void command(unsigned char command[MAX_STRING])
         printf("Enter the name or symbol of the element: ");
         scanf("%s", _element);
         //  api_getElectronConfig(_element);
-        printf("Work in progress.\n");
+        //  printf("Work in progress.\n");
         break;
     }
 
@@ -178,6 +180,16 @@ void command(unsigned char command[MAX_STRING])
     {
         api_listAllElementGroups();
         break;
+    }
+
+    case CMD_LIST_ALL_ELL_IN_GR_HASH:
+    {
+        char _group[MAX_STRING];
+        printf("Enter the name of the group: ");
+        scanf("%s", _group);
+        api_listAllElementsInGroup(_group);
+        break;
+
     }
 
     case CMD_HELP_HASH:

@@ -155,18 +155,18 @@ Element elements[118] = {
     This can be used for every element in the periodic table.
 */
 void api_getElementName(char element[MAX_STRING]) {
-    int i;
-    bool found = false;
-    for (i = 0; i < 118; i++) {
-        if (strcmp(element, elements[i]._symbol) == 0) {
-            printf("%s", elements[i]._name);
-            found = true;
-            break;
-        }
-    }
-    if (!found) {
+    char *find;
+    
+    find = strstr(_symbols, element);
+
+    if(find == NULL){
         printf("Element not found.\nName are case sensitive.\n");
+        return;
     }
+
+    int elementOrder = (find - _symbols) / _symbolMax;
+
+    printf("%s", elements[elementOrder]._name);
 }
 
 // @Usage : api_getElementSymbol("Hydrogen");
@@ -178,18 +178,18 @@ void api_getElementName(char element[MAX_STRING]) {
     This can be used for every element in the periodic table.
 */
 void api_getElementSymbol(char element[MAX_STRING]) {
-    int i;
-    bool found = false;
-    for (i = 0; i < 118; i++) {
-        if (strcmp(element, elements[i]._name) == 0) {
-            printf("%s", elements[i]._symbol);
-            found = true;
-            break;
-        }
-    }
-    if (!found) {
+    char *find;
+    
+    find = strstr(_names, element);
+
+    if(find == NULL){
         printf("Element not found.\nName are case sensitive.\n");
+        return;
     }
+
+    int elementOrder = (find - _names) / _nameMax;
+
+    printf("%s", elements[elementOrder]._symbol);
 }
 
 // @Usage : api_listAllElements();
@@ -228,15 +228,15 @@ void api_getElement(int number) {
 */
 void api_listAllElementGroups() {
     printf(
-        "1. Alkali metals\n"
-        "2. Alkaline earth metals\n"
-        "3. Lanthanides\n"
-        "4. Actinides\n"
-        "5. Transition metals\n"
-        "6. Post-transition metals\n"
-        "7. Metalloids\n"
-        "8. Nonmetals\n"
-        "9. Halogens\n"
+        "1.  Alkali metals\n"
+        "2.  Alkaline earth metals\n"
+        "3.  Lanthanides\n"
+        "4.  Actinides\n"
+        "5.  Transition metals\n"
+        "6.  Post-transition metals\n"
+        "7.  Metalloids\n"
+        "8.  Nonmetals\n"
+        "9.  Halogens\n"
         "10. Noble gases\n"
     );
 }
@@ -297,6 +297,69 @@ void api_getElementGroup(char element[MAX_STRING]) {
     }
 }
 
+
+/**
+ * @brief Prints the elements in the group passed.
+ * @usage api_getElementsInGroup("Transition Metals");
+ * 
+ * @param group The group passed
+ */
+void api_listAllElementsInGroup(char group[MAX_STRING]){
+    unsigned char _type = 0;
+    int length = strlen(group);
+
+    char *token = strstr(_groups, group);
+
+    if (token == NULL) {
+        printf("Group not found.\n");
+        return;
+    }
+
+    switch(length){
+        case 13: // Same length as Alkali Metals
+            _type = ALKALI_METALS;
+            break;
+        case 21: // Same length as Alkaline Earth Metals
+            _type = ALKALINE_EARTH_METALS;
+            break;
+        case 11: // Same length as Lanthanides and Noble Gases
+            if(strncmp(group, "Lanthanides", 11) == 0){
+                _type = LANTHANIDES;
+            } else {
+                _type = NOBLE_GASES;
+            }
+            break;
+        case 9: // Same length as Actinides
+            _type = ACTINIDES;
+            break;
+        case 17: // Same length as Transition Metals
+            _type = TRANSITION_METALS;
+            break;
+        case 22: // Same length as Post-Transition Metals
+            _type = POST_TRANSITION_METALS;
+            break;
+        case 10: // Same length as Metalloids
+            _type = METALLOIDS;
+            break;
+        case 19: // Same length as Reactive Nonmetals
+            _type = REACTIVE_NONMETALS;
+            break;
+        case 8: // Same length as Halogens
+            _type = HALOGENS;
+            break;
+        default:
+            printf("Group not found.\n");
+            return;
+    }
+
+    for(int i = 0; i < 118; ++i){
+        if(elements[i]._group == _type){
+            printf("%s\t-\t%s\t-\t%d\t-\t%.3f\n\n", elements[i]._name, elements[i]._symbol, elements[i]._atomicNumber, elements[i]._relativeAtomic);
+        }
+    }
+
+}
+
 // @Usage : api_getNGConfig("H");
 // @Param : element - The element to get the configuration of.
 // @Brief : Prints the noble gas configuration of the element.
@@ -305,7 +368,28 @@ void api_getElementGroup(char element[MAX_STRING]) {
     The element can be provided as the name or symbol.
 */
 void api_getNGConfig(char element[MAX_STRING]) {
-    printf("Command Currently Broken\n");
+    //   printf("Command Currently Broken\n");
+
+    // Go into the assets folder and open the file "electron.txt"
+    // FILE *electronConfig = fopen("assets/electron.txt", "r");
+    // // If the file is not found, print an error message.
+    // if (electronConfig == NULL) {
+    //     printf("Error: File not found.\n");
+    // }
+    // // If the file is found, read the file and print the electron configuration.
+    // else {
+    //     char line[MAX_STRING];
+    //     int i = 0;
+    //     while (fgets(line, sizeof(line), electronConfig)) {
+    //         if (i == elementLine) {
+    //             printf("%s", line);
+    //             break;
+    //         }
+    //         i++;
+    //     }
+    // }
+
+
 }
 
 // @Usage : api_getAtomicNumber("Hydrogen");
@@ -316,18 +400,32 @@ void api_getNGConfig(char element[MAX_STRING]) {
     Names and Initials are CasE SenSitIVE.
 */
 void api_getAtomicNumber(char element[MAX_STRING]) {
-    int i;
-    bool found = false;
-    for (i = 0; i < 118; i++) {
-        if (strcmp(element, elements[i]._name) == 0 || strcmp(element, elements[i]._symbol) == 0) {
-            printf("%d", elements[i]._atomicNumber);
-            found = true;
-            break;
-        }
+
+    char *find;
+    bool nameChoosen = false;
+    
+    if(strlen(element) > 2){
+        find = strstr(_names, element);
+        nameChoosen = true;
+    } else {
+        find = strstr(_symbols, element);
     }
-    if (!found) {
+
+    if(find == NULL){
         printf("Element not found.\nName are case sensitive.\n");
+        return;
     }
+
+    int elementOrder;
+
+    if(nameChoosen){
+        elementOrder = (find - _names) / _nameMax;
+    } else {
+        elementOrder = (find - _symbols) / _symbolMax;
+    }
+
+    printf("%s - %d", elements[elementOrder]._name, elements[elementOrder]._atomicNumber);
+
 }
 
 // @Usage : api_getMolarMass("1");
