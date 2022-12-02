@@ -7,6 +7,7 @@
 #define CMD_GET_NG_CFG_HASH             13875264875927385392U
 #define CMD_GET_MOLAR_MASS_HASH         15161883487309708276U
 #define CMD_GET_ELECTRON_CFG_HASH       13477816550730122999U
+#define CMD_GET_ISOTOPE_WEIGHT_HASH     10244830366085616784U
 
 #define CMD_LIST_ALL_EL_HASH            16020803631752962487U
 #define CMD_LIST_ALL_ELL_GR_HASH        1834757248859756676U
@@ -18,8 +19,6 @@
 #define CMD_REPO_HASH                   6385651515U
 #define CMD_SMILE_HASH                  5861864U
 #define CMD_EXIT_HASH                   6385204799U
-
-
 
 //  Hash function to make the if-else if ladder a bit more efficient
 //  

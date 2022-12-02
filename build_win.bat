@@ -4,7 +4,7 @@
 
     powershell write-host -fore green Starting Job...
 
-    : Set the path to the Bunsen source code
+    : Set the path to the src folder
     cd ./src
 
     powershell write-host -fore red Building Bunsen...
@@ -20,7 +20,23 @@
     : Return to the root directory
     cd ..
 
-    echo Press any key to exit...
-    pause >nul
+    : Ask the user if they want to compile Hash-Tool
+    powershell write-host -fore green Finished Job...
+    powershell write-host -fore green Would you like to compile Hash-Tool?
 
+    set /p compile=Compile Hash-Tool? [Y/N]:
+
+    if %compile%==Y (
+        powershell write-host -fore green Compiling Hash-Tool...
+        cd ./src
+        gcc hashy.c hash.c -o hash-tool
+        move hash-tool.exe ..\bin\
+        cd ..
+        cd ..
+        powershell write-host -fore green Finished Job...
+    ) else (
+        powershell write-host -fore red Skipping Hash-Tool...
+        powershell write-host -fore green Finished Job...
+    )
+        
     EXIT /B 0
