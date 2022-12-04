@@ -421,3 +421,11 @@ void api_getElectronConfig(int elementLine) {
         }
     }
 }
+
+void api_getWavelengthFromHertz(float hertz) {
+    printf("%f",c/hertz);
+}
+
+void api_getWavelengthFromLamda(float lamda) {
+    printf("%f",c/lamda);
+}

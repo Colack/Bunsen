@@ -14,7 +14,6 @@ static const char commands[][MAX_STRING] = {
     "getNGConfig",
     "getMolarMass",
     "getElectronConfig",
-    "getIsotopeWeight",
 
     "listAllElements",
     "listAllElementGroups",
@@ -57,8 +56,7 @@ static void help()
         "getElementGroup : Get the element group of an element from its name or symbol.\n"
         "getNGConfig : Get the noble gas configuration of an element from its name or symbol.\n"
         "getMolarMass : Get the molar mass from an element and the number of atoms.\n"
-        "getElectronConfig : Get the electron configuration of an element from its name or symbol.\n"
-        "getIsotopeWeight : Get the isotope weight of an elements atomic number and the number of nuetrons.\n\n\n"
+        "getElectronConfig : Get the electron configuration of an element from its name or symbol.\n\n\n"
 
         " -- LIST Commands --\n"
         "listAllElements : List all elements.\n"
@@ -129,12 +127,6 @@ static void command(unsigned char command[MAX_STRING])
         printf("Enter the name or symbol of the element: ");
         scanf("%s", _element);
         api_getAtomicNumber(_element);
-        break;
-    }
-
-    case CMD_GET_ISOTOPE_WEIGHT_HASH:
-    {
-        printf("This command is not yet implemented.\n");
         break;
     }
 

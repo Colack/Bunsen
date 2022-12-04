@@ -80,6 +80,9 @@ void api_getElectronConfig(int elementLine);
 void api_getAtomicNumber(char element[MAX_STRING]);
 void api_getMolarMass(int element, int atom);
 
+void api_getWavelengthFromHertz(float hertz);
+void api_getWavelengthFromLamda(float lamda);
+
 // LIST functions
 void api_listAllElements();
 void api_listAllElementGroups();
