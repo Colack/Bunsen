@@ -14,6 +14,9 @@ Periodic Bunsen has CLI features, such as periodic table commands and ways to se
 Periodic Bunsen is still in development, and is not yet complete. Planned features include:
 
 - Calculating the weight of an isotope
+- Calculate Lambda
+- Calculate Wavelength
+- Calculate Energy (Joules)
 
 ## Installation
 
