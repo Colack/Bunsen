@@ -10,7 +10,7 @@
     powershell write-host -fore red Building Bunsen...
 
     : Start the build
-    gcc main.c cli.c hash.c periodic.c -o bunsen
+    gcc main.c cli.c hash.c periodic.c -o bunsen_win
 
     if not exist ..\bin MKDIR ..\bin
 
