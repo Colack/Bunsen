@@ -12,16 +12,7 @@ Periodic Bunsen is a CLI tool, and is designed to be used in the terminal. There
 
 To build bunsen, go to your specified version folder in the `src` folder and view the `README.md` file for instructions. You can also view the [BUILDING](BUILDING.md) file for more info.
 
-## Planned Features
-
-Periodic Bunsen is still in development, and is not yet complete. Planned features include:
-
-- [ ] Calculating the weight of an isotope
-- [ ] Calculating Lambda max
-- [ ] Calculating the number of moles for a compound
-- [ ] Calculating Wavelength
-- [ ] Calculating Energy in Joules
-
 ## Contributing
 
-If you would like to contribute to Periodic Bunsen, please read the [CONTRIBUTING](CONTRIBUTING.md) file for more info.
+If you would like to contribute to Periodic Bunsen, please read the [CONTRIBUTING](CONTRIBUTING.md) file for more info.   
+You can also view all upcoming features and what to work on [here](https://github.com/Colack/Bunsen/issues/1).
