@@ -1,9 +1,6 @@
 #include "cli.h"
 #include "hash.h"
 
-// @Path src\cli.c
-// Contains the CLI function(s)
-
 static const char commands[][MAX_STRING] = {
     "getName",
     "getSymbol",
@@ -215,6 +212,13 @@ static void command(unsigned char command[MAX_STRING])
         printf("Enter the name or symbol of the element: ");
         scanf("%s", _element);
         api_getElementDetails(_element);
+        break;
+    }
+
+    case CMD_UPDATE_HASH:
+    {
+        printf("Checking for updates...\n");
+        api_update();
         break;
     }
 

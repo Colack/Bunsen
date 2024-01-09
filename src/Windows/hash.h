@@ -24,4 +24,6 @@
 #define CMD_CREDITS_HASH                229462281912979U
 #define CMD_REPO_HASH                   6385651515U
 
+#define CMD_UPDATE_HASH                 6954104508584U
+
 const unsigned long long hash(unsigned char *str);

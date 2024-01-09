@@ -376,3 +376,8 @@ void api_getElementDetails(char element[MAX_STRING]) {
 
     printf("Relative Atomic Mass: %.3f\n", elements[elementOrder]._relativeAtomic);
 }
+
+void api_update() {
+    // TODO: Implement update function using https://watermelonkatana.com/projects/bunsen/.version
+    printf("Update function not implemented yet.\n");
+}

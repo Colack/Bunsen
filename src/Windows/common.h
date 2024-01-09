@@ -10,6 +10,7 @@
 #include <errno.h>
 #include <math.h>
 #include <ctype.h>
+#include <Windows.h>
 
 #define MAX_STRING 100
 #define MAX_ELEMENTS 118
