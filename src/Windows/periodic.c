@@ -340,3 +340,39 @@ void api_getElectronConfig(int elementLine) {
         }
     }
 }
+
+void api_getElementDetails(char element[MAX_STRING]) {
+    // Get all of the element details from the element name
+    // Use the elements array to get the details.
+
+    char *find;
+    bool nameChoosen = false;
+
+    if(strlen(element) > 2){
+        find = strstr(_names, element);
+        nameChoosen = true;
+    } else {
+        find = strstr(_symbols, element);
+    }
+
+    if(find == NULL){
+        printf("Element not found.\nName are case sensitive.\n");
+        return;
+    }
+
+    int elementOrder;
+
+    if(nameChoosen){
+        elementOrder = (find - _names) / _nameMax;
+    } else {
+        elementOrder = (find - _symbols) / _symbolMax;
+    }
+
+    printf("Name: %s\n", elements[elementOrder]._name);
+
+    printf("Symbol: %s\n", elements[elementOrder]._symbol);
+
+    printf("Atomic Number: %d\n", elements[elementOrder]._atomicNumber);
+
+    printf("Relative Atomic Mass: %.3f\n", elements[elementOrder]._relativeAtomic);
+}

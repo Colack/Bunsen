@@ -3,7 +3,7 @@
 // @Path src\cli.h
 // Contains the CLI function(s)
 
-static const char commands[][MAX_STRING];
+static const char commands[MAX_STRING][MAX_STRING];
 
 static const char contributors[][MAX_STRING] = {
     "Colack",

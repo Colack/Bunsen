@@ -13,6 +13,7 @@ static const char commands[][MAX_STRING] = {
     "getNGConfig",
     "getMolarMass",
     "getElectronConfig",
+    "getElementDetails",
 
     "listAllElements",
     "listAllElementGroups",
@@ -22,11 +23,14 @@ static const char commands[][MAX_STRING] = {
     "version",
     "credits",
     "repo",
-    "exit"};
+};
 
 static void credits()
 {
-    printf("Periodic Bunsen CLI V%d.%d. (c) Jack Spencer %d.\nRepository : %s\nLicense : %s\nContributors : \n\n", VERSION_MAJOR, VERSION_MINOR, VERSION_YEAR, REPOSITORY, LICENSE);
+    printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
+    printf("This program is licensed under the %s license.\n", COM_WATERMELONKATANA_LICENSE);
+    printf("This program is open source and can be found at %s\n", COM_WATERMELONKATANA_REPOSITORY);
+    printf("Contributors:\n");
     for (int i = 0; i < sizeof(contributors) / sizeof(contributors[0]); i++)
     {
         printf("%s\n", contributors[i]);
@@ -35,7 +39,9 @@ static void credits()
 
 static void repo()
 {
-    printf("Repository : %s\n", REPOSITORY);
+    printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
+    printf("This program is licensed under the %s license.\n", COM_WATERMELONKATANA_LICENSE);
+    printf("This program is open source and can be found at %s\n", COM_WATERMELONKATANA_REPOSITORY);
 }
 
 static void help()
@@ -45,6 +51,7 @@ static void help()
         "getName : Get the name of an element from its symbol.\n"
         "getSymbol : Get the symbol of an element from its name.\n"
         "getElement : Get the element from its atomic number.\n"
+        "getElementDetails : Get the details of an element from its name or symbol.\n"
         "getAtomicNumber : Get the atomic number of an element from its name or symbol.\n"
         "getElementGroup : Get the element group of an element from its name or symbol.\n"
         "getNGConfig : Get the noble gas configuration of an element from its name or symbol.\n"
@@ -60,13 +67,12 @@ static void help()
         "help : Prints the help message.\n"
         "version : Prints the version of the program.\n"
         "credits : Prints the credits of the program.\n"
-        "repo : Prints the repository of the program.\n"
-        "exit : Exits the program.\n");
+        "repo : Prints the repository of the program.\n");
 }
 
 static void version()
 {
-    printf("Periodic Bunsen CLI v%d.%d (c) Jack Spencer %d\n", VERSION_MAJOR, VERSION_MINOR, VERSION_YEAR);
+    printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
 }
 
 static void command(unsigned char command[MAX_STRING])
@@ -76,7 +82,7 @@ static void command(unsigned char command[MAX_STRING])
     unsigned long long _hash = hash(command);
 
     switch (_hash)
-    {
+    { 
 
     case CMD_GET_NAME_HASH:
     {
@@ -203,9 +209,14 @@ static void command(unsigned char command[MAX_STRING])
         break;
     }
 
-    case CMD_EXIT_HASH:
-        exit(0);
+    case CMD_GET_ELEMENT_DETAILS_HASH:
+    {
+        char _element[MAX_STRING];
+        printf("Enter the name or symbol of the element: ");
+        scanf("%s", _element);
+        api_getElementDetails(_element);
         break;
+    }
 
     default:
         printf("Command not found.\nType 'help' to see a list of commands.\n");
@@ -215,20 +226,21 @@ static void command(unsigned char command[MAX_STRING])
 
 void cli(int argc, char* argv[])
 {
-    for(int i = 1; i < argc; i++){
-        command(argv[i]);
-    }
-    printf("\n");
-
-    unsigned char input[MAX_STRING];
-
-    printf(STARTING_MESSAGE, VERSION_MAJOR, VERSION_MINOR, VERSION_YEAR);
-
-    while (true)
+    // If there are no arguments
+    if (argc == 1)
     {
-        printf("\nbunsen> ");
-        scanf("%s", input);
-
-        command(input);
+        printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
+        printf("Type 'help' to see a list of commands.\n");
+    } else if (strcmp(argv[1], "hash") == 0) {
+        if (argc == 3) {
+            printf("%llu\n", hash(argv[2]));
+        } else {
+            printf("Usage: bunsen hash <string>\n");
+        }
+    } else {
+        for (int i = 1; i < argc; i++)
+        {
+            command(argv[i]);
+        }
     }
 }

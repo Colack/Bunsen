@@ -4,6 +4,7 @@
 #define CMD_GET_NAME_HASH               229466956013990U
 #define CMD_GET_SYMBOL_HASH             249889515323374683U 
 #define CMD_GET_ELEMENT_HASH            8246353987072950095U
+#define CMD_GET_ELEMENT_DETAILS_HASH    13492430702868894581U
 
 #define CMD_GET_ATOMIC_NO_HASH          10528486662183460459U
 #define CMD_GET_ELEMENT_GR_HASH         10717938186677395292U
@@ -22,7 +23,5 @@
 #define CMD_VERSION_HASH                229486327000139U
 #define CMD_CREDITS_HASH                229462281912979U
 #define CMD_REPO_HASH                   6385651515U
-#define CMD_SMILE_HASH                  5861864U
-#define CMD_EXIT_HASH                   6385204799U
 
 const unsigned long long hash(unsigned char *str);

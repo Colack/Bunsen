@@ -1,4 +1,4 @@
-#include "includes.h"
+#include "common.h"
 
 // @Path src\periodic.h
 // Contains the periodic table data, functions, and different access methods.
@@ -50,6 +50,7 @@ void api_getElementName(char element[MAX_STRING]);
 void api_getElementSymbol(char element[MAX_STRING]);
 void api_getElement(int number);
 void api_getElementGroup(char element[MAX_STRING]);
+void api_getElementDetails(char element[MAX_STRING]);
 
 void api_getNGConfig(int elementLine);
 void api_getElectronConfig(int elementLine);

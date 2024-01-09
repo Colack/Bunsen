@@ -50,6 +50,9 @@ tasks.json
 
 # Build Directory
 bin/
+build/
+out/
+target/
 
 # Kernel Module Compile Results
 *.mod*
