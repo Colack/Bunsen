@@ -1,7 +1,7 @@
-#include "common.h"
+#ifndef PERIODIC_H
+#define PERIODIC_H
 
-// @Path src\periodic.h
-// Contains the periodic table data, functions, and different access methods.
+#include "../common.h"
 
 typedef enum elementGroups
 {
@@ -65,3 +65,5 @@ void api_getWavelengthFromLamda(float lamda);
 void api_listAllElements();
 void api_listAllElementGroups();
 void api_listAllElementsInGroup(char group[MAX_STRING]);
+
+#endif

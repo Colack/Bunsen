@@ -1,13 +1,12 @@
-#include "periodic.h"
+#ifndef CLI_H
+#define CLI_H
 
-// @Path src\cli.h
-// Contains the CLI function(s)
+#include "periodic.h"
 
 static const char commands[MAX_STRING][MAX_STRING];
 
 static const char contributors[][MAX_STRING] = {
-    "Colack",
-    "Mike4544"
+    "Colack"
 };
 
 static void credits();
@@ -17,3 +16,5 @@ static void version();
 static void command(unsigned char command[MAX_STRING]);
 
 void cli(int argc, char* argv[]);
+
+#endif

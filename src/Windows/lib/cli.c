@@ -22,29 +22,9 @@ static const char commands[][MAX_STRING] = {
     "repo",
 };
 
-static void credits()
-{
-    printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
-    printf("This program is licensed under the %s license.\n", COM_WATERMELONKATANA_LICENSE);
-    printf("This program is open source and can be found at %s\n", COM_WATERMELONKATANA_REPOSITORY);
-    printf("Contributors:\n");
-    for (int i = 0; i < sizeof(contributors) / sizeof(contributors[0]); i++)
-    {
-        printf("%s\n", contributors[i]);
-    }
-}
-
-static void repo()
-{
-    printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
-    printf("This program is licensed under the %s license.\n", COM_WATERMELONKATANA_LICENSE);
-    printf("This program is open source and can be found at %s\n", COM_WATERMELONKATANA_REPOSITORY);
-}
-
 static void help()
 {
     printf(
-        " -- GET Commands --\n"
         "getName : Get the name of an element from its symbol.\n"
         "getSymbol : Get the symbol of an element from its name.\n"
         "getElement : Get the element from its atomic number.\n"
@@ -55,26 +35,19 @@ static void help()
         "getMolarMass : Get the molar mass from an element and the number of atoms.\n"
         "getElectronConfig : Get the electron configuration of an element from its name or symbol.\n\n\n"
 
-        " -- LIST Commands --\n"
         "listAllElements : List all elements.\n"
         "listAllElementGroups : List all element groups.\n"
         "listAllElementsInGroup : List all elements in a given group.\n\n\n"
 
-        " -- CLI Commands --\n"
         "help : Prints the help message.\n"
         "version : Prints the version of the program.\n"
         "credits : Prints the credits of the program.\n"
-        "repo : Prints the repository of the program.\n");
-}
-
-static void version()
-{
-    printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
+        "repo : Prints the repository of the program.\n"
+        "update : Checks for updates.\n\n\n");
 }
 
 static void command(unsigned char command[MAX_STRING])
 {
-    printf("\n");
 
     unsigned long long _hash = hash(command);
 
@@ -190,19 +163,27 @@ static void command(unsigned char command[MAX_STRING])
 
     case CMD_VERSION_HASH:
     {
-        version();
+        printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
         break;
     }
 
     case CMD_CREDITS_HASH:
     {
-        credits();
+        printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
+        printf("This program is licensed under the %s license.\n", COM_WATERMELONKATANA_LICENSE);
+        printf("This program is open source and can be found at %s\n", COM_WATERMELONKATANA_REPOSITORY);
+        printf("Contributors:\n");
+        for (int i = 0; i < sizeof(contributors) / sizeof(contributors[0]); i++) {
+            printf("%s\n", contributors[i]);
+        }
         break;
     }
 
     case CMD_REPO_HASH:
     {
-        repo();
+        printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
+        printf("This program is licensed under the %s license.\n", COM_WATERMELONKATANA_LICENSE);
+        printf("This program is open source and can be found at %s\n", COM_WATERMELONKATANA_REPOSITORY);
         break;
     }
 
@@ -218,7 +199,7 @@ static void command(unsigned char command[MAX_STRING])
     case CMD_UPDATE_HASH:
     {
         printf("Checking for updates...\n");
-        api_update();
+        // TODO: Add update code
         break;
     }
 

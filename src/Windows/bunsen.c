@@ -1,7 +1,4 @@
-#include "cli.h"
-
-// @Path src\main.c
-// Main file for the CLI
+#include "./lib/cli.h"
 
 int main(int argc, char *argv[]) {
     cli(argc, argv);
