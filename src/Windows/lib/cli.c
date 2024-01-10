@@ -209,13 +209,20 @@ static void command(unsigned char command[MAX_STRING])
     }
 }
 
+static void startMenu() {
+    printf("   _    \n");
+    printf("  | |       Periodic Bunsen CLI v%d.%d.%d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH);
+    printf("  / \\      Type 'help' to see a list of commands.\n");
+    printf(" /   \\ \n");
+    printf("(_____)\n");
+}
+
 void cli(int argc, char* argv[])
 {
     // If there are no arguments
     if (argc == 1)
     {
-        printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
-        printf("Type 'help' to see a list of commands.\n");
+        startMenu();
     } else if (strcmp(argv[1], "hash") == 0) {
         if (argc == 3) {
             printf("%llu\n", hash(argv[2]));
