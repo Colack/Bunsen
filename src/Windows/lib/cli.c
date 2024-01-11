@@ -24,26 +24,29 @@ static const char commands[][MAX_STRING] = {
 
 static void help()
 {
-    printf(
-        "getName : Get the name of an element from its symbol.\n"
-        "getSymbol : Get the symbol of an element from its name.\n"
-        "getElement : Get the element from its atomic number.\n"
-        "getElementDetails : Get the details of an element from its name or symbol.\n"
-        "getAtomicNumber : Get the atomic number of an element from its name or symbol.\n"
-        "getElementGroup : Get the element group of an element from its name or symbol.\n"
-        "getNGConfig : Get the noble gas configuration of an element from its name or symbol.\n"
-        "getMolarMass : Get the molar mass from an element and the number of atoms.\n"
-        "getElectronConfig : Get the electron configuration of an element from its name or symbol.\n\n\n"
+    printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
+    printf("This program is licensed under the %s license.\n", COM_WATERMELONKATANA_LICENSE);
+    printf("This program is open source and can be found at %s\n", COM_WATERMELONKATANA_REPOSITORY);
 
-        "listAllElements : List all elements.\n"
-        "listAllElementGroups : List all element groups.\n"
-        "listAllElementsInGroup : List all elements in a given group.\n\n\n"
+    printf("Usage: bunsen <command> [arguments]\n");
+    printf("Type 'bunsen commands' to see a list of commands.\n");
+}
 
-        "help : Prints the help message.\n"
-        "version : Prints the version of the program.\n"
-        "credits : Prints the credits of the program.\n"
-        "repo : Prints the repository of the program.\n"
-        "update : Checks for updates.\n\n\n");
+static void commandsList()
+{
+    printf("Periodic Bunsen CLI v%d.%d.%d (c) %s %d\n", COM_WATERMELONKATANA_VERSION_MAJOR, COM_WATERMELONKATANA_VERSION_MINOR, COM_WATERMELONKATANA_VERSION_PATCH, COM_WATERMELONKATANA_AUTHOR, COM_WATERMELONKATANA_YEAR);
+    printf("This program is licensed under the %s license.\n", COM_WATERMELONKATANA_LICENSE);
+    printf("This program is open source and can be found at %s\n", COM_WATERMELONKATANA_REPOSITORY);
+
+    printf("Commands:\n");
+    for (int i = 0; i < sizeof(commands) / sizeof(commands[0]); i++) {
+        // check if the string is empty
+        if (strlen(commands[i]) == 0) {
+            break;
+        } else {
+            printf("%s\n", commands[i]);
+        }
+    }
 }
 
 static void command(unsigned char command[MAX_STRING])
@@ -196,10 +199,9 @@ static void command(unsigned char command[MAX_STRING])
         break;
     }
 
-    case CMD_UPDATE_HASH:
+    case CMD_COMMANDS_HASH:
     {
-        printf("Checking for updates...\n");
-        // TODO: Add update code
+        commandsList();
         break;
     }
 
