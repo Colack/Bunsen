@@ -41,7 +41,9 @@
 #define COM_WATERMELONKATANA_VERSION_STRING "0.2.0"
 #define COM_WATERMELONKATANA_YEAR 2024
 
-#define COM_WATERMELONKATANA_UPDATE_URL "<url>"
+#define COM_WATERMELONKATANA_UPDATE_URL "<url>" 
+// ^ update this to https://watermelonkatana.com/projects/bunsen/.version when applicable.
+// Update will be out soon.
 
 /*
     Structs
