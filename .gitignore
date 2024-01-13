@@ -62,3 +62,8 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Precompiled Qt headers
+*.moc
+*.rcc
+*.qrc
