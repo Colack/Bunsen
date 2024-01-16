@@ -1,5 +1,5 @@
 #ifndef COMMON_H
-#define COMMON_H
+#define COMMON_H 
 
 /*
     Library header files
@@ -25,8 +25,6 @@
 #define MAX_ELEMENTS 118
 #define MAX_ARRAY 1000
 
-#define c 300000000
-#define cc 300
 #define pi 3.14159265359
 #define vv 0.95
 
@@ -74,9 +72,6 @@ typedef struct Element {
 /*
     Variables
 */
-
-static const char commands[MAX_ARRAY][MAX_STRING];
-static const char contributors[MAX_ARRAY][MAX_STRING];
 
 static Element elements[MAX_ELEMENTS];
 
