@@ -1,0 +1,13 @@
+name: Bunsen
+description: CLI for working with chemistry
+usage: bunsen [command]
+license: GPL-3.0
+author: Colack | Jack Spencer
+versionMajor: 0
+versionMinor: 2
+versionPatch: 0
+buildDate: 2024-01-19
+buildTime: 19:45:00
+buildAuthor: Colack | Jack Spencer
+
+# WatermelonKatana attributes for the future!!!!
