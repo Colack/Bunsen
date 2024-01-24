@@ -1,3 +1,5 @@
+#pragma ONCE
+
 #ifndef CLI_H
 #define CLI_H
 
