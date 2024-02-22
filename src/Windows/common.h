@@ -14,8 +14,6 @@
 #include <errno.h>
 #include <math.h>
 #include <ctype.h>
-#include <Windows.h>
-#include <conio.h>
 
 /*
     Definitions
